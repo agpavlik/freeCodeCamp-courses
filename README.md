@@ -2,6 +2,6 @@
 
 ---
 
-### The gif for impostor syndrome
+The gif for impostor syndrome
 <img src="https://media.giphy.com/media/xi2HFKeHyvf9QBFtX5/giphy.gif" width="25%"/>
 </div>
