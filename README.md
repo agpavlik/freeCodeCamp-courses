@@ -1,4 +1,4 @@
-### `I decided to make brief notes regarding the courses I have learned. It will allow me to refresh my knowledge quickly in case of need.`
+### I decided to make brief notes regarding the courses I have learned. It will allow me to refresh my knowledge quickly in case of need.
 
 ---
 
