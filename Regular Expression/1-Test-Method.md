@@ -308,6 +308,81 @@ All four of these test calls would return true.
 
 These shortcut character classes are also known as shorthand character classes.
 
+>Exercise
+
+Use the shorthand character class \w to count the number of alphanumeric characters in various quotes and strings.
+
+>Answer
+```javascript
+let quoteSample = "The five boxing wizards jump quickly.";
+let alphabetRegexV2 = /\w/g; // Change this line
+let result = quoteSample.match(alphabetRegexV2).length;
+```
 ---
 
-## 19. 
+## 19. Match Everything But Letters and Numbers
+You've learned that you can use a shortcut to match alphanumerics `[A-Za-z0-9_]` using `\w`. A natural pattern you might want to search for is the opposite of alphanumerics.
+
+You can search for the opposite of the `\w` with `\W`. Note, the opposite pattern uses a capital letter. This shortcut is the same as `[^A-Za-z0-9_]`.
+```javascript
+let shortHand = /\W/;
+let numbers = "42%";
+let sentence = "Coding!";
+numbers.match(shortHand);
+sentence.match(shortHand);
+```
+The first match call would return the value `["%"]` and the second would return `["!"]`.
+
+---
+
+## 20. Match All Numbers
+You've learned shortcuts for common string patterns like alphanumerics. Another common pattern is looking for just digits or numbers.
+
+The shortcut to look for digit characters is `\d`, with a lowercase `d`. This is equal to the character class `[0-9]`, which looks for a single character of any number between zero and nine.
+
+---
+
+## 21. Match All Non-Numbers
+The last challenge showed how to search for digits using the shortcut `\d` with a lowercase `d`. You can also search for non-digits using a similar shortcut that uses an uppercase `D` instead.
+
+The shortcut to look for non-digit characters is `\D`. This is equal to the character class `[^0-9]`, which looks for a single character that is not a number between zero and nine.
+
+---
+
+## 22. Restrict Possible Usernames
+Usernames are used everywhere on the internet. They are what give users a unique identity on their favorite sites.
+
+You need to check all the usernames in a database. Here are some simple rules that users have to follow when creating their username.
+
+- Usernames can only use alpha-numeric characters.
+
+- The only numbers in the username have to be at the end. There can be zero or more of them at the end. Username cannot start with the number.
+
+- Username letters can be lowercase and uppercase.
+
+- Usernames have to be at least two characters long. A two-character username can only use alphabet letters as characters.
+
+> Exercise
+
+Change the regex userCheck to fit the constraints listed above.
+
+> Answer
+```javascript
+let username = "JackOfAllTrades";
+let userCheck = /^[a-z]([a-z]+\d*|\d{2,})$/i; //Change this line
+let result = userCheck.test(username);
+```
+## 23. Match Whitespace
+The challenges so far have covered matching letters of the alphabet and numbers. You can also match the whitespace or spaces between letters.
+
+You can search for whitespace using `\s`, which is a `lowercase s`. This pattern not only matches whitespace, but also carriage return, tab, form feed, and new line characters. You can think of it as similar to the character class `[ \r\t\f\n\v]`.
+```javascript
+let whiteSpace = "Whitespace. Whitespace everywhere!"
+let spaceRegex = /\s/g;
+whiteSpace.match(spaceRegex);
+```
+This match call would return `[" ", " "]`.
+
+---
+
+## 24. 
