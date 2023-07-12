@@ -260,4 +260,54 @@ But it does not find matches in the following strings since there are no letter 
 ```
 ---
 
-## 16. 
+## 16. Match Beginning String Patterns
+Prior challenges showed that regular expressions can be used to look for a number of matches. They are also used to search for patterns in specific positions in strings.
+
+In an earlier challenge, you used the `caret character (^)` inside a character set to create a negated character set in the form `[^thingsThatWillNotBeMatched]`. Outside of a character set, the caret is used to search for patterns at the beginning of strings.
+```javascript
+let firstString = "Ricky is first and can be found.";
+let firstRegex = /^Ricky/;
+firstRegex.test(firstString);
+let notFirst = "You can't find Ricky now.";
+firstRegex.test(notFirst);
+```
+The first test call would return true, while the second would return false.
+
+---
+
+## 17. Match Ending String Patterns
+In the last challenge, you learned to use the caret character to search for patterns at the beginning of strings. There is also a way to search for patterns at the end of strings.
+
+You can search the end of strings using the dollar sign character `$` at the end of the regex.
+```javascript
+let theEnding = "This is a never ending story";
+let storyRegex = /story$/;
+storyRegex.test(theEnding);
+let noEnding = "Sometimes a story will have to end";
+storyRegex.test(noEnding);
+```
+The first test call would return true, while the second would return false.
+
+---
+
+## 18. Match All Letters and Numbers
+Using character classes, you were able to search for all letters of the alphabet with `[a-z]`. This kind of character class is common enough that there is a shortcut for it, although it includes a few extra characters as well.
+
+The closest character class in JavaScript to match the alphabet is `\w`. This shortcut is equal to `[A-Za-z0-9_]`. This character class matches upper and lowercase letters plus numbers. Note, this character class also includes the `underscore character (_)`.
+```javascript
+let longHand = /[A-Za-z0-9_]+/;
+let shortHand = /\w+/;
+let numbers = "42";
+let varNames = "important_var";
+longHand.test(numbers);
+shortHand.test(numbers);
+longHand.test(varNames);
+shortHand.test(varNames);
+```
+All four of these test calls would return true.
+
+These shortcut character classes are also known as shorthand character classes.
+
+---
+
+## 19. 
