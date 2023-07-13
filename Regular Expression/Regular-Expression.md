@@ -510,4 +510,50 @@ let result = pwRegex.test(sampleWord);
 ```
 ---
 
-## 30. 
+## 30. Check For Mixed Grouping of Characters
+Sometimes we want to check for groups of characters using a Regular Expression and to achieve that we use parentheses ().
+
+If you want to find either Penguin or Pumpkin in a string, you can use the following Regular Expression: /P(engu|umpk)in/g
+
+Then check whether the desired string groups are in the test string by using the test() method.
+```javascript
+let testStr = "Pumpkin";
+let testRegex = /P(engu|umpk)in/;
+testRegex.test(testStr);
+```
+The test method here would return true.
+
+> Exercise
+
+Fix the regex so that it checks for the names of Franklin Roosevelt or Eleanor Roosevelt in a case sensitive manner and it should make concessions for middle names.
+
+Then fix the code so that the regex that you have created is checked against myString and either true or false is returned depending on whether the regex matches.
+
+> Answer
+```javascript
+let myString = "Eleanor Roosevelt";
+let myRegex = /(Franklin|Eleanor).* Roosevelt/; // Change this line
+let result = myRegex.test(myString); // Change this line
+// After passing the challenge experiment with myString and see how the grouping works
+```
+---
+
+## 31. Reuse Patterns Using Capture Groups
+Say you want to match a word that occurs multiple times like below.
+```javascript
+let repeatStr = "row row row your boat";
+```
+You could use /row row row/, but what if you don't know the specific word repeated? Capture groups can be used to find repeated substrings.
+
+Capture groups are constructed by enclosing the regex pattern to be captured in parentheses. In this case, the goal is to capture a word consisting of alphanumeric characters so the capture group will be \w+ enclosed by parentheses: /(\w+)/.
+
+The substring matched by the group is saved to a temporary "variable", which can be accessed within the same regex using a backslash and the number of the capture group (e.g. \1). Capture groups are automatically numbered by the position of their opening parentheses (left to right), starting at 1.
+
+The example below matches a word that occurs thrice separated by spaces:
+```javascript
+let repeatRegex = /(\w+) \1 \1/;
+```
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["row row row", "row"]
+Using the .match() method on a string will return an array with the matched substring, along with its captured groups.
+
