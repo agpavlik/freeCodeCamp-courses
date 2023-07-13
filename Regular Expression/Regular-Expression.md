@@ -422,7 +422,7 @@ You can specify the lower and upper number of patterns with quantity specifiers 
 
 To only specify the lower number of patterns, keep the first number followed by a comma.
 
-For example, to match only the string hah with the letter a appearing at least 3 times, your regex would be /ha{3,}h/.
+For example, to match only the string `hah` with the letter `a` appearing at least 3 times, your regex would be /ha{3,}h/.
 ```javascript
 let A4 = "haaaah";
 let A2 = "haah";
@@ -436,4 +436,78 @@ In order, the three test calls would return true, false, and true.
 
 ---
 
-## 27. 
+## 27. Specify Exact Number of Matches
+You can specify the lower and upper number of patterns with quantity specifiers using curly brackets. Sometimes you only want a specific number of matches.
+
+To specify a certain number of patterns, just have that one number between the curly brackets.
+
+For example, to match only the word hah with the letter a 3 times, your regex would be /ha{3}h/.
+```javascript
+let A4 = "haaaah";
+let A3 = "haaah";
+let A100 = "h" + "a".repeat(100) + "h";
+let multipleHA = /ha{3}h/;
+multipleHA.test(A4);
+multipleHA.test(A3);
+multipleHA.test(A100);
+```
+In order, the three test calls would return false, true, and false.
+
+---
+
+## 28. Check for All or None
+Sometimes the patterns you want to search for may have parts of it that may or may not exist. However, it may be important to check for them nonetheless.
+
+You can specify the possible existence of an element with a question mark, ?. This checks for zero or one of the preceding element. You can think of this symbol as saying the previous element is optional.
+
+For example, there are slight differences in American and British English and you can use the question mark to match both spellings.
+```javascript
+let american = "color";
+let british = "colour";
+let rainbowRegex= /colou?r/;
+rainbowRegex.test(american);
+rainbowRegex.test(british);
+```
+Both uses of the test method would return true.
+
+---
+
+## 29. Positive and Negative Lookahead
+`Lookaheads` are patterns that tell JavaScript to look-ahead in your string to check for patterns further along. This can be useful when you want to search for multiple patterns over the same string.
+
+There are two kinds of lookaheads: `positive lookahead` and `negative lookahead`.
+
+A `positive lookahead` will look to make sure the element in the search pattern is there, but won't actually match it. A positive lookahead is used as `(?=...)` where the ... is the required part that is not matched.
+
+On the other hand, a `negative lookahead` will look to make sure the element in the search pattern is not there. A negative lookahead is used as `(?!...)` where the ... is the pattern that you do not want to be there. The rest of the pattern is returned if the negative lookahead part is not present.
+
+Lookaheads are a bit confusing but some examples will help.
+```javascript
+let quit = "qu";
+let noquit = "qt";
+let quRegex= /q(?=u)/;
+let qRegex = /q(?!u)/;
+quit.match(quRegex);
+noquit.match(qRegex);
+```
+Both of these match calls would return ["q"].
+
+A more practical use of lookaheads is to check two or more patterns in one string. Here is a (naively) simple password checker that looks for between 3 and 6 characters and at least one number:
+```javascript
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password);
+```
+>Exercise
+
+Use lookaheads in the pwRegex to match passwords that are greater than 5 characters long, and have two consecutive digits.
+
+>Answer
+```javascript
+let sampleWord = "astronaut";
+let pwRegex = /(?=\w{5})(?=\D\w*\d{2})/; // Change this line
+let result = pwRegex.test(sampleWord);
+```
+---
+
+## 30. 
