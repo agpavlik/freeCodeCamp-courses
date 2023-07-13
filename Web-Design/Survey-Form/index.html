@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+<h1 id="title">freeCodeCamp Survey Form</h1>
+<p id="description">Thank you for taking the time to help us improve the platform</p>
+
+<form id="survey-form">
+  <div>
+    <label id="name-label">Name</label>
+    <input id="name" type="text" name="name" placeholder="Enter your name" required/>
+  </div>
+
+  <div>
+    <label id="email-label">Email</label>
+    <input id="email" type="email" name="email" placeholder="Enter your Email" required/>
+  </div>
+
+  <div>
+    <label id="number-label">Number</label>
+    <input id="number" type="number" name="number" min="6" max="20" placeholder="Enter your number"/>
+  </div>
+
+  <div>
+    <label id="age-label">Age</label>
+    <input id="age" type="number" name="age" min="2" max="2" placeholder="Age"/>
+  </div>
+
+  <div>
+    <label for="dropdown">Which option best describes your current role?</label>
+  <select id="dropdown">
+    <option value="">- Select current role -</option>
+    <option value="select-one">Student</option>
+    <option value="select-two">Full time job</option>
+    <option value="select-three">Full time learner</option>
+    <option value="select-four">Prefer not to say</option>
+    <option value="select-five">Other</option>
+  </select>
+</div>
+
+<div>
+  <legend>Would you recommend freeCodeCamp to a friend?</legend>
+  <label for="radio-one">Definitely</label>
+  <input type="radio" id="radio-one" name="radio-option" value="radio-one" checked>
+  <label for="radio-two">Maybe</label>
+  <input type="radio" id="radio-two" name="radio-option" value="radio-two">
+  <label for="radio-three">Not sure</label>
+  <input type="radio" id="radio-three" name="radio-option" value="radio-three">
+</div>
+<div>
+  <label for="checkbox-1">Front-end Projects</label>
+  <input type="checkbox" value="checkbox-1" id="checkbox-1" name="checkbox-1">
+  <label for="checkbox-2">Back-end Projects</label>
+  <input type="checkbox" value="checkbox-2" id="checkbox-2" name="checkbox-2">
+  <label for="checkbox-3">Front-end Projects</label>
+  <input type="checkbox" value="checkbox-3" id="checkbox-3" name="checkbox-3">
+  <label for="checkbox-4">Back-end Projects</label>
+  <input type="checkbox" value="checkbox-4" id="checkbox-4" name="checkbox-4">
+  <label for="checkbox-5">Front-end Projects</label>
+  <input type="checkbox" value="checkbox-5" id="checkbox-5" name="checkbox-5">
+  <label for="checkbox-6">Back-end Projects</label>
+  <input type="checkbox" value="checkbox-6" id="checkbox-6" name="checkbox-6">
+  <label for="checkbox-7">Front-end Projects</label>
+  <input type="checkbox" value="checkbox-7" id="checkbox-7" name="checkbox-7">
+  <label for="checkbox-8">Back-end Projects</label>
+  <input type="checkbox" value="checkbox-8" id="checkbox-8" name="checkbox-8">
+<div>
+<textarea id="story" name="story" rows="5" cols="35">
+It was a dark and stormy night...
+</textarea>>
+
+<button id="submit" type="submit">
+  Submit</button>
+</form>
