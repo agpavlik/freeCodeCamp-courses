@@ -1,4 +1,4 @@
-# Course - Basic JavaScript
+# Course - Debugging
 
 https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#debugging
 
