@@ -1,4 +1,7 @@
+# Course - Basic Data Structures
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#basic-data-structures
 
+---
 
 ## 1. Use an Array to Store a Collection of Data
 The below is an example of the simplest implementation of an array data structure. This is known as a `one-dimensional array`, meaning it only has one level, or that it does not have any other arrays nested within it. Notice it contains booleans, strings, and numbers, among other valid JavaScript data types:
@@ -53,6 +56,8 @@ In addition to accessing the value associated with an index, you can also set an
 ourArray[1] = "not b anymore";
 ```
 Using bracket notation, we have now reset the item at index 1 from the string b, to not b anymore. Now ourArray is ["a", "not b anymore", "c"].
+
+---
 
 ## 3. Add Items to an Array with push() and unshift()
 An array's length, like the data types it can contain, is not fixed. Arrays can be defined with a length of any number of elements, and elements can be added or removed over time; in other words, arrays are mutable. In this challenge, we will look at two methods with which we can programmatically modify an array: `Array.push()` and `Array.unshift()`.
@@ -113,8 +118,272 @@ let newArray = array.splice(3, 2);
 ```
 newArray has the value ['really', 'happy'].
 
+> Exercise
+
+We've initialized an array arr. Use splice() to remove elements from arr, so that it only contains elements that sum to the value of 10.
+```javascript
+const arr = [2, 4, 5, 1, 7, 5, 2, 1];
+// Only change code below this line
+
+// Only change code above this line
+console.log(arr);
+```
+> Answer
+```javascript
+const arr = [2, 4, 5, 1, 7, 5, 2, 1];
+// Only change code below this line
+arr.splice(1,4)
+// Only change code above this line
+console.log(arr);
+```
 ---
 
-## 6. 
+## 6. Add Items Using splice()
+Remember in the last challenge we mentioned that `splice()` can take up to three parameters? Well, you can use the third parameter, comprised of one or more element(s), to add to the array. This can be incredibly useful for quickly switching out an element, or a set of elements, for another.
+```javascript
+const numbers = [10, 11, 12, 12, 15];
+const startIndex = 3;
+const amountToDelete = 1;
 
+numbers.splice(startIndex, amountToDelete, 13, 14);
+console.log(numbers);
+```
+The second occurrence of 12 is removed, and we add 13 and 14 at the same index. The numbers array would now be [ 10, 11, 12, 13, 14, 15 ].
 
+Here, we begin with an array of numbers. Then, we pass the following to splice(): The index at which to begin deleting elements (3), the number of elements to be deleted (1), and the remaining arguments (13, 14) will be inserted starting at that same index. Note that there can be any number of elements (separated by commas) following amountToDelete, each of which gets inserted.
+
+---
+
+## 7. Copy Array Items Using slice()
+The next method we will cover is `slice()`. Rather than modifying an array, `slice()` copies or extracts a given number of elements to a new array, leaving the array it is called `upon untouched`. `slice()` takes only 2 parameters — the first is the index at which to begin extraction, and the second is the index at which to stop extraction (extraction will occur up to, but not including the element at this index). Consider this:
+```javascript
+let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+
+let todaysWeather = weatherConditions.slice(1, 3);
+```
+todaysWeather would have the value ['snow', 'sleet'], while weatherConditions would still have ['rain', 'snow', 'sleet', 'hail', 'clear'].
+
+In effect, we have created a new array by extracting elements from an existing array.
+
+---
+
+## 8. Copy an Array with the Spread Operator
+While `slice()` allows us to be selective about what elements of an array to copy, among several other useful tasks, ES6's new `spread operator` allows us to easily copy all of an array's elements, in order, with a simple and highly readable syntax. The spread syntax simply looks like this: `...`
+
+In practice, we can use the spread operator to copy an array like so:
+```javascript
+let thisArray = [true, true, undefined, false, null];
+let thatArray = [...thisArray];
+```
+thatArray equals [true, true, undefined, false, null]. thisArray remains unchanged and thatArray contains the same elements as thisArray.
+
+> Exercise
+
+We have defined a function, copyMachine which takes arr (an array) and num (a number) as arguments. The function is supposed to return a new array made up of num copies of arr. We have done most of the work for you, but it doesn't work quite right yet. Modify the function using spread syntax so that it works correctly (hint: another method we have already covered might come in handy here!).
+```javascript
+function copyMachine(arr, num) {
+  let newArr = [];
+  while (num >= 1) {
+    // Only change code below this line
+
+    // Only change code above this line
+    num--;
+  }
+  return newArr;
+}
+
+console.log(copyMachine([true, false, true], 2));
+```
+
+> Answer
+``` javascript
+function copyMachine(arr, num) {
+  let newArr = [];
+  while (num >= 1) {
+    // Only change code below this line
+    newArr.push([...arr]);
+    // Only change code above this line
+    num--;
+  }
+  return newArr;
+}
+
+console.log(copyMachine([true, false, true], 2));
+```
+---
+
+## 9. Combine Arrays with the Spread Operator
+Another huge advantage of the spread operator is the ability to combine arrays, or to insert all the elements of one array into another, at any index. With more traditional syntaxes, we can concatenate arrays, but this only allows us to combine arrays at the end of one, and at the start of another. Spread syntax makes the following operation extremely simple:
+```javascript
+let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+
+let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+```
+thatArray would have the value ['basil', 'cilantro', 'sage', 'rosemary', 'parsley', 'thyme', 'coriander'].
+
+Using spread syntax, we have just achieved an operation that would have been more complex and more verbose had we used traditional methods.
+
+---
+
+## 10. Check For The Presence of an Element With indexOf()
+Since arrays can be changed, or mutated, at any time, there's no guarantee about where a particular piece of data will be on a given array, or if that element even still exists. Luckily, JavaScript provides us with another built-in method, `indexOf()`, that allows us to quickly and easily check for the presence of an element on an array. `indexOf()` takes an element as a parameter, and when called, it returns the position, or index, of that element, or -1 if the element does not exist on the array.
+
+For example:
+```javascript
+let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+
+fruits.indexOf('dates');
+fruits.indexOf('oranges');
+fruits.indexOf('pears');
+```
+indexOf('dates') returns -1, indexOf('oranges') returns 2, and indexOf('pears') returns 1 (the first index at which each element exists).
+
+> Exercise
+
+indexOf() can be incredibly useful for quickly checking for the presence of an element on an array. We have defined a function, quickCheck, that takes an array and an element as arguments. Modify the function using indexOf() so that it returns true if the passed element exists on the array, and false if it does not.
+
+```javascript
+function quickCheck(arr, elem) {
+  // Only change code below this line
+
+  // Only change code above this line
+}
+
+console.log(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
+```
+
+> Answer
+```javascript
+function quickCheck(arr, elem) {
+  if (arr.indexOf(elem) === -1) {
+    return false
+  }
+  return true
+}
+console.log(quickCheck(['squash', 'onions', 'shallots'], 'mushrooms'));
+```
+---
+
+## 11. Iterate Through All an Array's Items Using For Loops
+Sometimes when working with arrays, it is very handy to be able to iterate through each item to find one or more elements that we might need, or to manipulate an array based on which data items meet a certain set of criteria. JavaScript offers several built in methods that each iterate over arrays in slightly different ways to achieve different results (such as `every()`, `forEach()`, `map()`, etc.), however the technique which is most flexible and offers us the greatest amount of control is a simple `for loop`.
+
+Consider the following:
+```javascript
+function greaterThanTen(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > 10) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+
+greaterThanTen([2, 12, 8, 14, 80, 0, 1]);
+```
+Using a for loop, this function iterates through and accesses each element of the array, and subjects it to a simple test that we have created. In this way, we have easily and programmatically determined which data items are greater than 10, and returned a new array, [12, 14, 80], containing those items.
+
+>Exercise
+
+We have defined a function, filteredArray, which takes arr, a nested array, and elem as arguments, and returns a new array. elem represents an element that may or may not be present on one or more of the arrays nested within arr. Modify the function, using a for loop, to return a filtered version of the passed array such that any array nested within arr containing elem has been removed.
+
+```javascript
+function filteredArray(arr, elem) {
+  let newArr = [];
+  // Only change code below this line
+
+  // Only change code above this line
+  return newArr;
+}
+
+console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
+```
+> Answer
+```javascript
+function filteredArray(arr, elem) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].indexOf(elem) === -1) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+
+console.log(filteredArray([[3, 2, 3], [1, 6, 3], [3, 13, 26], [19, 3, 9]], 3));
+```
+---
+
+## 12. Create complex multi-dimensional arrays
+Awesome! You have just learned a ton about arrays! This has been a fairly high level overview, and there is plenty more to learn about working with arrays, much of which you will see in later sections. But before moving on to looking at Objects, let's take one more look, and see how arrays can become a bit more complex than what we have seen in previous challenges.
+
+One of the most powerful features when thinking of arrays as data structures, is that arrays can contain, or even be completely made up of other arrays. We have seen arrays that contain arrays in previous challenges, but fairly simple ones. However, arrays can contain an infinite depth of arrays that can contain other arrays, each with their own arbitrary levels of depth, and so on. In this way, an array can very quickly become a very complex data structure, known as a `multi-dimensional`, or `nested array`. Consider the following example:
+```javascript
+let nestedArray = [
+  ['deep'],
+  [
+    ['deeper'], ['deeper'] 
+  ],
+  [
+    [
+      ['deepest'], ['deepest']
+    ],
+    [
+      [
+        ['deepest-est?']
+      ]
+    ]
+  ]
+];
+```
+The deep array is nested 2 levels deep. The deeper arrays are 3 levels deep. The deepest arrays are 4 levels, and the deepest-est? is 5.
+
+While this example may seem convoluted, this level of complexity is not unheard of, or even unusual, when dealing with large amounts of data. However, we can still very easily access the deepest levels of an array this complex with bracket notation:
+```javascript
+console.log(nestedArray[2][1][0][0][0]);
+```
+This logs the string deepest-est?. And now that we know where that piece of data is, we can reset it if we need to:
+```javascript
+nestedArray[2][1][0][0][0] = 'deeper still';
+console.log(nestedArray[2][1][0][0][0]);
+```
+Now it logs deeper still.
+
+---
+
+## 13. Add Key-Value Pairs to JavaScript Objects
+At their most basic, objects are just collections of key-value pairs. In other words, they are pieces of data (values) mapped to unique identifiers called properties (keys). Take a look at an example:
+```javascript
+const tekkenCharacter = {
+  player: 'Hwoarang',
+  fightingStyle: 'Tae Kwon Doe',
+  human: true
+};
+```
+The above code defines a Tekken video game character object called tekkenCharacter. It has three properties, each of which map to a specific value. If you want to add an additional property, such as "origin", it can be done by assigning origin to the object:
+```
+tekkenCharacter.origin = 'South Korea';
+```
+This uses dot notation. If you were to observe the tekkenCharacter object, it will now include the origin property. Hwoarang also had distinct orange hair. You can add this property with bracket notation by doing:
+```
+tekkenCharacter['hair color'] = 'dyed orange';
+```
+Bracket notation is required if your property has a space in it or if you want to use a variable to name the property. In the above case, the property is enclosed in quotes to denote it as a string and will be added exactly as shown. Without quotes, it will be evaluated as a variable and the name of the property will be whatever value the variable is. Here's an example with a variable:
+```javascript
+const eyes = 'eye color';
+tekkenCharacter[eyes] = 'brown';
+```
+After adding all the examples, the object will look like this:
+```
+{
+  player: 'Hwoarang',
+  fightingStyle: 'Tae Kwon Doe',
+  human: true,
+  origin: 'South Korea',
+  'hair color': 'dyed orange',
+  'eye color': 'brown'
+};
+```
+---
+
+## 14. 
