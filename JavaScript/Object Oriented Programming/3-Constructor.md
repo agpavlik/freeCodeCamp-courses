@@ -3,72 +3,6 @@ https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/#ob
 
 ---
 
-## 1. Create a Basic JavaScript Object
-Think about things people see every day, like cars, shops, and birds. These are all objects: tangible things people can observe and interact with.
-
-What are some qualities of these objects? A car has wheels. Shops sell items. Birds have wings.
-
-These qualities, or properties, define what makes up an object. Note that similar objects share the same properties, but may have different values for those properties. For example, all cars have wheels, but not all cars have the same number of wheels.
-
-Objects in JavaScript are used to model real-world objects, giving them properties and behavior just like their real-world counterparts. Here's an example using these concepts to create a duck object:
-```javascript
-let duck = {
-  name: "Aflac",
-  numLegs: 2
-};
-```
-This duck object has two property/value pairs: a name of Aflac and a numLegs of 2.
-
----
-
-## 2. Use Dot Notation to Access the Properties of an Object
-The last challenge created an object with various properties. Now you'll see how to access the values of those properties. Here's an example:
-```javascript
-let duck = {
-  name: "Aflac",
-  numLegs: 2
-};
-console.log(duck.name);
-```
-Dot notation is used on the object name, duck, followed by the name of the property, name, to access the value of Aflac.
-
----
-
-## 3. Create a Method on an Object
-Objects can have a special type of property, called a `method`.
-
-`Methods` are properties that are functions. This adds different behavior to an object. Here is the duck example with a method:
-```javascript
-let duck = {
-  name: "Aflac",
-  numLegs: 2,
-  sayName: function() {return "The name of this duck is " + duck.name + ".";}
-};
-duck.sayName();
-```
-The example adds the sayName method, which is a function that returns a sentence giving the name of the duck. Notice that the method accessed the name property in the return statement using duck.name. The next challenge will cover another way to do this.
-
----
-
-## 4. Make Code More Reusable with the this Keyword
-The last challenge introduced a `method` to the duck object. It used duck.name dot notation to access the value for the name property within the return statement:
-```javascript
-sayName: function() {return "The name of this duck is " + duck.name + ".";}
-```
-While this is a valid way to access the object's property, there is a pitfall here. If the variable name changes, any code referencing the original name would need to be updated as well. In a short object definition, it isn't a problem, but if an object has many references to its properties there is a greater chance for error.
-
-A way to avoid these issues is with the `this` keyword:
-```javascript
-let duck = {
-  name: "Aflac",
-  numLegs: 2,
-  sayName: function() {return "The name of this duck is " + this.name + ".";}
-};
-```
-`this` is a deep topic, and the above example is only one way to use it. In the current context, `this` refers to the object that the method is associated with: duck. If the object's name is changed to mallard, it is not necessary to find all the references to duck in the code. It makes the code reusable and easier to read.
-
----
-
 ## 5. Define a Constructor Function
 `Constructors` are functions that create new objects. They define properties and behaviors that will belong to the new object. Think of them as a blueprint for the creation of new objects.
 
@@ -196,7 +130,56 @@ The console would display the value ["name", "numLegs"].
 
 ---
 
-## 10. 
+## 10. Use Prototype Properties to Reduce Duplicate Code
+Since numLegs will probably have the same value for all instances of Bird, you essentially have a duplicated variable numLegs inside each Bird instance.
+
+This may not be an issue when there are only two instances, but imagine if there are millions of instances. That would be a lot of duplicated variables.
+
+A better way is to use the prototype of Bird. Properties in the prototype are shared among ALL instances of Bird. Here's how to add numLegs to the Bird prototype:
+```
+Bird.prototype.numLegs = 2;
+```
+Now all instances of Bird have the numLegs property.
+```
+console.log(duck.numLegs);
+console.log(canary.numLegs);
+```
+Since all instances automatically have the properties on the prototype, think of a prototype as a "recipe" for creating objects. Note that the prototype for duck and canary is part of the Bird constructor as Bird.prototype.
+
+---
+
+## 11. Iterate Over All Properties
+You have now seen two kinds of properties: own properties and prototype properties. Own properties are defined directly on the object instance itself. And prototype properties are defined on the prototype.
+```javascript
+function Bird(name) {
+  this.name = name;  //own property
+}
+
+Bird.prototype.numLegs = 2; // prototype property
+
+let duck = new Bird("Donald");
+```
+Here is how you add duck's own properties to the array ownProps and prototype properties to the array prototypeProps:
+```javascript
+let ownProps = [];
+let prototypeProps = [];
+
+for (let property in duck) {
+  if(duck.hasOwnProperty(property)) {
+    ownProps.push(property);
+  } else {
+    prototypeProps.push(property);
+  }
+}
+
+console.log(ownProps);
+console.log(prototypeProps);
+```
+console.log(ownProps) would display ["name"] in the console, and console.log(prototypeProps) would display ["numLegs"].
+
+---
+
+## 12. 
 
 
 
